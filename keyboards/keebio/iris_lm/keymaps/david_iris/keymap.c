@@ -4,9 +4,12 @@
 #include QMK_KEYBOARD_H
 
 enum custom_layers {
-     _QWERTY,
-     _LOWER,
-     _RAISE
+     _BASE,
+     _NAV,
+     _MEDIA,
+     _NUM,
+     _SYM,
+     _FUN
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
