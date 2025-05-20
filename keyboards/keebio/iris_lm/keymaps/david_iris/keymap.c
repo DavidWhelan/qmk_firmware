@@ -74,9 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
          QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LALT, KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RALT,
+         KC_LALT, KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,                            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RALT,
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LCTL, KC_DQT,  KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_RCTL,
+         KC_LCTL, KC_DQT,  KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,                            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_RCTL,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LSFT, KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE, KC_COLN,          KC_NO,   KC_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
