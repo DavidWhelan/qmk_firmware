@@ -12,6 +12,101 @@ enum custom_layers {
      _FUN
 };
 
+enum custom_keycodes {
+   COPY = SAFE_RANGE,
+   CUT,
+   PASTE,
+   UNDO,
+   REDO,
+   SAVE,
+   FIND
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+   os_variant_t detected_os = detected_host_os();
+
+   switch (keycode)
+   {
+      case COPY:
+         if (record->event.pressed) {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               SEND_STRING(SS_LCMD("c"));
+            }
+            else {
+               SEND_STRING(SS_LCTL("c"));
+            }
+         }
+         break;
+
+         case CUT:
+         if (record->event.pressed) {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               SEND_STRING(SS_LCMD("x"));
+            }
+            else {
+               SEND_STRING(SS_LCTL("x"));
+            }
+         }
+         break;
+
+         case PASTE:
+         if (record->event.pressed) {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               SEND_STRING(SS_LCMD("v"));
+            }
+            else {
+               SEND_STRING(SS_LCTL("v"));
+            }
+         }
+         break;
+
+         case UNDO:
+         if (record->event.pressed) {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               SEND_STRING(SS_LCMD("x"));
+            }
+            else {
+               SEND_STRING(SS_LCTL("x"));
+            }
+         }
+         break;
+
+         case REDO:
+         if (record->event.pressed) {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               SEND_STRING(SS_LCMD("y"));
+            }
+            else {
+               SEND_STRING(SS_LCTL("y"));
+            }
+         }
+         break;
+
+         case SAVE:
+         if (record->event.pressed) {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               SEND_STRING(SS_LCMD("s"));
+            }
+            else {
+               SEND_STRING(SS_LCTL("s"));
+            }
+         }
+         break;
+
+         case FIND:
+         if (record->event.pressed) {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               SEND_STRING(SS_LCMD("f"));
+            }
+            else {
+               SEND_STRING(SS_LCTL("f"));
+            }
+         }
+         break;
+   }
+   return true;
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT(
@@ -32,11 +127,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
          QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LALT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RALT,
+         KC_LALT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              REDO,    PASTE,   COPY,    CUT,     UNDO,    KC_RALT,
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LCTL, KC_NO,   KC_NO,   MS_BTN1, MS_BTN2, KC_NO,                              KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RCTL,
+         KC_LCTL, FIND,    SAVE,    MS_BTN1, MS_BTN2, KC_NO,                              KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RCTL,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_BOOT, KC_NO,            KC_NUM,  KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RSFT,
+         KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   QK_BOOT, KC_NO,            KC_NUM,  KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RSFT,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                         KC_NO,   KC_NO,   KC_NO,                     KC_ENT,  KC_BSPC, KC_DEL
                                     // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -50,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LCTL, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, KC_RCTL,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_BOOT, KC_NO,            RM_TOGG, KC_NO,   RM_PREV, RM_HUED, RM_SATD, RM_VALD, KC_RSFT,
+         KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   QK_BOOT, KC_NO,            RM_TOGG, KC_NO,   RM_PREV, RM_HUED, RM_SATD, RM_VALD, KC_RSFT,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                         KC_NO,   KC_NO,   KC_NO,                     KC_MSTP, KC_MPLY, KC_MUTE
                                     // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -64,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LCTL, KC_QUOT, KC_4,    KC_5,    KC_6,    KC_EQL,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RCTL,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LSFT, KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS, KC_SCLN,          KC_NO,   KC_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
+         KC_LSFT, KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS, KC_SCLN,          KC_NO,   QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                         KC_DOT,  KC_0,    KC_MINS,                   KC_NO,   KC_NO,   KC_NO
                                     // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -78,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LCTL, KC_DQT,  KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,                            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RCTL,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LSFT, KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE, KC_COLN,          KC_NO,   KC_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
+         KC_LSFT, KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE, KC_COLN,          KC_NO,   QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                         KC_LPRN, KC_RPRN, KC_UNDS,                   KC_NO,   KC_NO,   KC_NO
                                     // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -92,7 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LCTL, KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_SCRL,                            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RCTL,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LSFT, KC_F1O,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS, KC_LGUI,          KC_NO,   KC_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
+         KC_LSFT, KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS, KC_LGUI,          KC_NO,   QK_BOOT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                         KC_BSPC, KC_SPC,  KC_TAB,                    KC_NO,   KC_NO,   KC_NO
                                     // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
