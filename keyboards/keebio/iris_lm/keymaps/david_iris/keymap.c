@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_HOME,          KC_END,  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
    //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-      KC_LGUI, LT(_NAV, KC_SPC),  LT(_MEDIA, KC_TAB), LT(_SYM, KC_ENT), LT(_NUM, KC_BSPC), LT(_FUN, KC_DEL)
+      LT(_MEDIA, KC_ESC), LT(_NAV, KC_SPC), KC_TAB, LT(_SYM, KC_ENT), LT(_NUM, KC_BSPC), LT(_FUN, KC_DEL)
   ),
 
   [_NAV] = LAYOUT(
@@ -128,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LALT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              REDO,    PASTE,   COPY,    CUT,     UNDO,    KC_RALT,
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LCTL, FIND,    SAVE,    MS_BTN1, MS_BTN2, KC_NO,                              KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RCTL,
+         KC_LCTL, FIND,    MS_BTN1, SAVE,    MS_BTN2, KC_NO,                              KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RCTL,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   QK_BOOT, KC_NO,            KC_NUM,  KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RSFT,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
