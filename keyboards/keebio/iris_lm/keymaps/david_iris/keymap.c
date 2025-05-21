@@ -18,8 +18,6 @@ enum custom_keycodes {
    PASTE,
    UNDO,
    REDO,
-   SAVE,
-   FIND
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -81,28 +79,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
          }
          break;
-
-         case SAVE:
-         if (record->event.pressed) {
-            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
-               SEND_STRING(SS_LCMD("s"));
-            }
-            else {
-               SEND_STRING(SS_LCTL("s"));
-            }
-         }
-         break;
-
-         case FIND:
-         if (record->event.pressed) {
-            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
-               SEND_STRING(SS_LCMD("f"));
-            }
-            else {
-               SEND_STRING(SS_LCTL("f"));
-            }
-         }
-         break;
    }
    return true;
 };
@@ -115,11 +91,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LALT, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                               KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_RALT,
    //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                               KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_RCTL,
+      KC_LCTL, LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), (KC_G),         KC_M, RSFT_T(KC_N), RCTL_T(KC_E), RALT_T(KC_I), RGUI_T(KC_O), KC_RCTL,
    //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_HOME,          KC_END,  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
    //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-      LT(_MEDIA, KC_ESC), LT(_NAV, KC_SPC), KC_TAB, LT(_SYM, KC_ENT), LT(_NUM, KC_BSPC), LT(_FUN, KC_DEL)
+      LT(_MEDIA, KC_ESC), LT(_NAV, KC_SPC), KC_TAB,                           LT(_SYM, KC_ENT), LT(_NUM, KC_BSPC), LT(_FUN, KC_DEL)
   ),
 
   [_NAV] = LAYOUT(
@@ -128,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LALT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              REDO,    PASTE,   COPY,    CUT,     UNDO,    KC_RALT,
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_LCTL, FIND,    MS_BTN1, SAVE,    MS_BTN2, KC_NO,                              KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RCTL,
+         KC_LCTL, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RCTL,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
          KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   QK_BOOT, KC_NO,            KC_NUM,  KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RSFT,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
