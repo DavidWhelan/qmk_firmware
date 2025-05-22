@@ -28,57 +28,118 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    {
       case COPY:
          if (record->event.pressed) {
-            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
-               SEND_STRING(SS_LCMD("c"));
+               if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+                  register_code(KC_LGUI);
+                  register_code(KC_C);
+               }
+               else {
+                  register_code(KC_LCTL);
+                  register_code(KC_C);
+               }
             }
             else {
-               SEND_STRING(SS_LCTL("c"));
+               if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+                  unregister_code(KC_C);
+                  unregister_code(KC_LGUI);
+               }
+               else {
+                  unregister_code(KC_C);
+                  unregister_code(KC_LCTL);
+               }
+            }
+            break;
+
+      case CUT:
+         if (record->event.pressed) {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               register_code(KC_LGUI);
+               register_code(KC_X);
+            }
+            else {
+               register_code(KC_LCTL);
+               register_code(KC_X);
+            }
+         }
+         else {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               unregister_code(KC_X);
+               unregister_code(KC_LGUI);
+            }
+            else {
+               unregister_code(KC_X);
+               unregister_code(KC_LCTL);
             }
          }
          break;
 
-         case CUT:
+      case PASTE:
          if (record->event.pressed) {
             if (detected_os == OS_MACOS || detected_os == OS_IOS) {
-               SEND_STRING(SS_LCMD("x"));
+               register_code(KC_LGUI);
+               register_code(KC_V);
             }
             else {
-               SEND_STRING(SS_LCTL("x"));
+               register_code(KC_LCTL);
+               register_code(KC_V);
+            }
+         }
+         else {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               unregister_code(KC_V);
+               unregister_code(KC_LGUI);
+            }
+            else {
+               unregister_code(KC_V);
+               unregister_code(KC_LCTL);
             }
          }
          break;
 
-         case PASTE:
+      case UNDO:
          if (record->event.pressed) {
             if (detected_os == OS_MACOS || detected_os == OS_IOS) {
-               SEND_STRING(SS_LCMD("v"));
+               register_code(KC_LGUI);
+               register_code(KC_Z);
             }
             else {
-               SEND_STRING(SS_LCTL("v"));
+               register_code(KC_LCTL);
+               register_code(KC_Z);
+            }
+         }
+         else {
+            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+               unregister_code(KC_Z);
+               unregister_code(KC_LGUI);
+            }
+            else {
+               unregister_code(KC_Z);
+               unregister_code(KC_LCTL);
             }
          }
          break;
 
-         case UNDO:
+      case REDO:
          if (record->event.pressed) {
-            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
-               SEND_STRING(SS_LCMD("z"));
+               if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+                  register_code(KC_LGUI);
+                  register_code(KC_Y);
+               }
+               else {
+                  register_code(KC_LCTL);
+                  register_code(KC_Y);
+               }
             }
             else {
-               SEND_STRING(SS_LCTL("z"));
+               if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+                  unregister_code(KC_Y);
+                  unregister_code(KC_LGUI);
+               }
+               else {
+                  unregister_code(KC_Y);
+                  unregister_code(KC_LCTL);
+               }
             }
-         }
-         break;
-
-         case REDO:
-         if (record->event.pressed) {
-            if (detected_os == OS_MACOS || detected_os == OS_IOS) {
-               SEND_STRING(SS_LCMD("y"));
-            }
-            else {
-               SEND_STRING(SS_LCTL("y"));
-            }
-         }
+            break;
          break;
    }
    return true;
