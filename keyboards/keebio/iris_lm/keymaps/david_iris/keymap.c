@@ -7,7 +7,6 @@ enum custom_layers {
      _BASE,
      _NAV,
      _MEDIA,
-     _MOUSE,
      _NUM,
      _SYM,
      _FUN
