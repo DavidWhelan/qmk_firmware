@@ -146,8 +146,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    return true;
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    switch (get_highest_layer(state)) {
+bool rgb_matrix_indicators_user(void) {
+    switch (get_highest_layer(layer_state)) {
       case _BASE:
         rgb_matrix_set_color_all(RGB_GREEN);
         break;
@@ -160,7 +160,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       default: //  for any other layers, or the default layer
          break;
     }
-   return state;
+    return true;
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
