@@ -146,23 +146,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    return true;
 };
 
-bool rgb_matrix_indicators_user(void) {
-    switch (get_highest_layer(layer_state)) {
-      case _BASE:
-        rgb_matrix_set_color_all(RGB_GREEN);
-        break;
-      case _CANARY:
-         rgb_matrix_set_color_all(RGB_YELLOW);
-         break;
-      case _QWERTY:
-         rgb_matrix_set_color_all(RGB_RED);
-         break;
-      default: //  for any other layers, or the default layer
-         break;
-    }
-    return true;
-}
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
    [_BASE] = LAYOUT(
