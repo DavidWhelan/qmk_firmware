@@ -5,7 +5,6 @@
 
 enum custom_layers {
      _BASE,
-     _CANARY,
      _QWERTY,
      _NAV,
      _MEDIA,
@@ -156,20 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
          KC_NO,   LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), (KC_G),         KC_M, RSFT_T(KC_N), RCTL_T(KC_E), RALT_T(KC_I), RGUI_T(KC_O), KC_NO,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_NO,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    DF(_CANARY),  DF(_QWERTY), KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
-      //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-         LT(_MEDIA, KC_ESC), LT(_NAV, KC_SPC), KC_TAB,                           LT(_SYM, KC_ENT), LT(_NUM, KC_BSPC), LT(_FUN, KC_DEL)
-   ),
-
-   [_CANARY] = LAYOUT(
-      //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-      //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_NO,   KC_W,    KC_L,    KC_Y,    KC_P,    KC_B,                               KC_Z,    KC_F,    KC_O,    KC_U,    KC_SCLN, KC_NO,
-      //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_NO,   LGUI_T(KC_C), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), (KC_G),         KC_M, RSFT_T(KC_N), RCTL_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_NO,
-      //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_NO,   KC_Q,    KC_J,    KC_V,    KC_D,    KC_K,    DF(_BASE),        KC_NO,   KC_X,    KC_H,    KC_SLSH, KC_COMM, KC_DOT,  KC_NO,
+         KC_NO,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_NO,        DF(_QWERTY), KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
          LT(_MEDIA, KC_ESC), LT(_NAV, KC_SPC), KC_TAB,                           LT(_SYM, KC_ENT), LT(_NUM, KC_BSPC), LT(_FUN, KC_DEL)
    ),
