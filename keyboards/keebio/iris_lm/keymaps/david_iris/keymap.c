@@ -43,6 +43,7 @@ enum custom_keycodes {
    PASTE,
    UNDO,
    REDO,
+   LOCK,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -147,16 +148,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                if (detected_os == OS_MACOS || detected_os == OS_IOS) {
                   register_code(KC_LSFT);
                   register_code(KC_LGUI);
-                  register_code(KC_Y);
+                  register_code(KC_Z);
                }
                else {
                   register_code(KC_LCTL);
                   register_code(KC_Y);
                }
-            }
-            else {
+         }
+         else {
                if (detected_os == OS_MACOS || detected_os == OS_IOS) {
-                  unregister_code(KC_Y);
+                  unregister_code(KC_Z);
                   unregister_code(KC_LGUI);
                   unregister_code(KC_LSFT);
                }
@@ -164,8 +165,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                   unregister_code(KC_Y);
                   unregister_code(KC_LCTL);
                }
-            }
-            break;
+         }
+         break;
+      case LOCK:
+         if (record->event.pressed) {
+               if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+                  register_code(KC_LCTL);
+                  register_code(KC_LGUI);
+                  register_code(KC_Q);
+               }
+               else {
+                  register_code(KC_LGUI);
+                  register_code(KC_L);
+               }
+         }
+         else {
+               if (detected_os == OS_MACOS || detected_os == OS_IOS) {
+                  unregister_code(KC_Q);
+                  unregister_code(KC_LGUI);
+                  unregister_code(KC_LCTL);
+               }
+               else {
+                  unregister_code(KC_L);
+                  unregister_code(KC_LGUI);
+               }
+         }
          break;
    }
    return true;
@@ -213,7 +237,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
          KC_NO,   HOME_A,  HOME_R,  HOME_S,  HOME_T,  KC_G,                               KC_M,    HOME_N,  HOME_E,  HOME_I,  HOME_O,  KC_NO,
       //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-         KC_NO,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_NO,            KC_NO,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
+         KC_NO,   KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    LOCK,             KC_NO,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
       //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                         TMB_ESC, TMB_SPC, KC_TAB,                    TMB_ENT, TMB_BSPC,TMB_DEL
                                     // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
